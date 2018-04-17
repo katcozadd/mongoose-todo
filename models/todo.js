@@ -1,3 +1,4 @@
+//creating a todo Schema
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 

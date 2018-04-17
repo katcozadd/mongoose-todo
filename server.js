@@ -5,6 +5,10 @@ var express  = require('express'),
 
  //requiring my models 
 var Todo     = require('./models/todo');
+var db       = require('./models');
+
+//requiring seed 
+var toDoList = require('./seed');
 
 // generate a new express app and call it 'app'
 var app      = express();
@@ -26,6 +30,14 @@ app.get('/', function (req, res) {
   res.sendFile('views/index.html' , { root : __dirname});
 });
 
+
+// get all todos
+app.get('/api/todos', function todosIndex(req, res) {
+  // find all todos in db
+  Todo.find(function handleDBTodosListed(err, allTodos) {
+    res.json({ todos: allTodos });
+  });
+});
 
 
 

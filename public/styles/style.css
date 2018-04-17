@@ -1,8 +1,118 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background: #89949E;
 }
 
-a {
-  color: #00B7FF;
+.intro {
+	height: 703px;
+	width: 100%;
+	margin: auto;
+	background: url(images/kiki.jpg) center center no-repeat;
+	display: table;
+	top: 0;
+	background-size: cover;
+}
+
+.intro .inner {
+	display: table-cell;
+	vertical-align: middle;	
+	width: 100%;
+	max-width: none;
+}
+
+.content{
+	max-width: 500px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.content h1 {
+	font-family: 'Lato', sans-serif;
+	text-transform: uppercase;
+	color: white;
+	font-size: 450%
+}
+
+h1 {
+	border: 2px solid white;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+li {
+    height: 20px;
+    width: 50%;
+    list-style-type: none;
+    background-color: white;
+    padding: 20px 10px;
+    border: 2px solid #837E5C;
+    margin: 5px auto;
+    text-transform: lowercase;
+    font-family: 'Ubuntu', sans-serif;
+    color: #3C454E;
+    text-align: center;
+}
+
+ul {
+	padding: 0;
+}
+
+
+h4, p {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    width: 50%;
+    max-width: 600px;
+    margin: 20px auto;
+    line-height: 25px;
+    letter-spacing: 1px;
+}
+
+
+
+h4 {
+	font-size: 35px;
+	line-height: 30px;
+}
+
+
+#todo {
+	text-align: center;
+}
+
+input {
+    height: 40px;
+    width: 50%;
+    border: 2px solid #837E5C;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0 0 0 10px;
+}
+
+button#submitButton {
+	margin: 0;
+	padding: 0;
+}
+
+#submitButton {
+    height: 40px;
+    width: 80px;
+    background: #837E5C;
+    position: relative;
+    color: white;
+    border: 2px solid #837E5C;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#submitButton:hover {
+	color: #837E5C;
+	background-color: #fff;
+
 }
