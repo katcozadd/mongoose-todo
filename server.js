@@ -1,5 +1,6 @@
 //Setup and Configuration
 //require express in our app
+var path     = require('path');
 var express  = require('express'),
   bodyParser = require('body-parser');
 
@@ -7,14 +8,16 @@ var express  = require('express'),
 var Todo     = require('./models/todo');
 var db       = require('./models');
 
-//requiring seed 
-var toDoList = require('./seed');
-
 // generate a new express app and call it 'app'
 var app      = express();
 
+//set the view engine 
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
 // serve static files in public
 app.use(express.static('public'));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,14 +34,17 @@ app.get('/', function (req, res) {
 });
 
 
-// get all todos
-app.get('/api/todos', function todosIndex(req, res) {
-  // find all todos in db
-  Todo.find(function handleDBTodosListed(err, allTodos) {
-    res.json({ todos: allTodos });
-  });
+//To Do Page with all of the to dos - index.ejs
+app.get('/todo', function (req, res) {
+    console.log('hello') // shows in terminal
+    db.Todo.find(function(err, todo) {
+    	if (err) {
+    	console.log("index error: " + err);
+      	res.sendStatus(500);
+    	}
+    res.render('index', {todo: todo});
+    });
 });
-
 
 
 //port listening
