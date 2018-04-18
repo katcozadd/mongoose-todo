@@ -7,8 +7,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>To Do List</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script src="../public/scripts/app.js"></script>
-		<link rel="stylesheet" href="../public/styles/style.css" type="text/css">
+		<script src="./scripts/app.js"></script>
+		<link rel="stylesheet" href="./styles/style.css" type="text/css">
 	</head>
 	<body>
 	  <div class="container">
@@ -18,7 +18,7 @@
 	        <form class="form-inline" id="newToDoForm">
 	          <div class="form-group">
 	            <label for="title">Task:</label>
-	            <input type="text" class="form-control" name="task" placeholder="I need to do...">
+	            <input type="text" class="form-control" name="task" id="taskInput" placeholder="I need to do...">
 	          </div>
 	          <div class="form-group">
 	            <label for="title">Description:</label>
@@ -31,8 +31,5 @@
 	      </div>
 	    </div>
 	  </div>
-	  	<% for (let i = 0; i < todo.length; i++) { %>
-	  <h3><a href="#<%= i+1 %>"><%= todo[i].task %></a></h1>
-	<% } %>
 	</body>
 </html>

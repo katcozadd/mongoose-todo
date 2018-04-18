@@ -30,21 +30,53 @@ var port = 3000;
 
 // define a root route: localhost:3000/
 app.get('/', function (req, res) {
-  res.sendFile('views/index.html' , { root : __dirname});
+  res.render('index');
 });
 
 
 //To Do Page with all of the to dos - index.ejs
-app.get('/todo', function (req, res) {
+app.get('/todo', function (req, res, next) {
     console.log('hello') // shows in terminal
     db.Todo.find(function(err, todo) {
     	if (err) {
     	console.log("index error: " + err);
       	res.sendStatus(500);
     	}
-    res.render('index', {todo: todo});
+    	console.log(todo);
+    res.json(todo);
     });
 });
+
+//Individual pages with specific todo in different pages by id - pizza-single.ejs
+app.get("/todo/:id", function(req, res) {
+    db.Todo.find(function(err, todo) {
+    	if (err) {
+    	console.log("index error: " + err);
+      	res.sendStatus(500);
+    	}
+	let id = request.params.id;
+	res.render( 'single/todo-singles', todo[id-1]);
+});
+});
+
+
+// create new todo
+app.post('/todo', function(req, res) {
+  // create new todo with form data (`req.body`)
+  var newTodo = req.body;
+    db.Todo.create(newTodo, function(err, newListItem){
+    if (err) {
+      console.log("index error: " + err)
+      res.sendStatus(500)  
+    } else {
+      //executed only in the success case, where theres no error
+      res.json(newListItem);  
+    }
+
+});
+
+});
+
 
 
 //port listening

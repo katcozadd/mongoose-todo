@@ -21,6 +21,16 @@ var todo_list = [
     task: "Call mom",
     description: "Say hey mom I love you a lot"
 
+  },
+    {
+    task: "Buy Rosé",
+    description: "And 'accidently' drink it all"
+
+  },
+    {
+    task: "Eat Avocado",
+    description: "Put the avocado on toast, or salad or tacos... or all of those options."
+
   }
   ];
 
