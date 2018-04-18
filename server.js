@@ -83,7 +83,7 @@ app.delete('/todo', function (req, res) {
       console.log("index error: " + err);
       res.sendStatus(500);
     }
-    // get the id of the book to delete
+    // get the id of the to do to delete
     let toDoToDelete = req.params.id;
     res.json(toDoToDelete);
   });

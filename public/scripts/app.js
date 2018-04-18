@@ -81,15 +81,13 @@ function newToDoError() {
 }
 
 function deleteToDoSuccess(json) {
-  // var book = json;
-  // console.log(json);
   var toDoId = json;
   console.log('delete toDo', toDoId);
-  // find the book with the correct ID and remove it from our allBooks array
+  // find the todo with the correct ID and remove it from our allToDos array
   for(var index = 0; index < allToDos.length; index++) {
     if(allToDos[index]._id === toDoId) {
       allToDos.splice(index, 1);
-      break;  // we found our book - no reason to keep searching (this is why we didn't use forEach)
+      break;  
     }
   }
   render();
