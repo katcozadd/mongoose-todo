@@ -27,6 +27,15 @@ $(document).ready(function(){
   });
 
 
+  $toDoList.on('click', '.deleteBtn', function() {
+    $.ajax({
+      method: 'DELETE',
+      url: '/todo'+$(this).attr('data-id'),
+      success: deleteToDoSuccess,
+      error: deleteToDoError
+    });
+  });
+
 
 
 
@@ -36,7 +45,7 @@ function getToDoHtml(toDoList) {
             <br />
             How: ${toDoList.description}
             <br />
-            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${toDoList._id}>Delete</button>
+            <button type="button" name="button" class="deleteBtn btn" data-id=${toDoList._id}>Delete</button>
           </li>`;
 }
 
@@ -69,6 +78,25 @@ function newToDoSuccess(json) {
 
 function newToDoError() {
   console.log('new to do error!');
+}
+
+function deleteToDoSuccess(json) {
+  // var book = json;
+  // console.log(json);
+  var toDoId = json;
+  console.log('delete toDo', toDoId);
+  // find the book with the correct ID and remove it from our allBooks array
+  for(var index = 0; index < allToDos.length; index++) {
+    if(allToDos[index]._id === toDoId) {
+      allToDos.splice(index, 1);
+      break;  // we found our book - no reason to keep searching (this is why we didn't use forEach)
+    }
+  }
+  render();
+}
+
+function deleteToDoError() {
+  console.log('deletebook error!');
 }
 
 });

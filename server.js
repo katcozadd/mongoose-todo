@@ -72,12 +72,22 @@ app.post('/todo', function(req, res) {
       //executed only in the success case, where theres no error
       res.json(newListItem);  
     }
-
+});
 });
 
+// delete to do
+app.delete('/todo', function (req, res) {
+  // get to do id from url params (`req.params`)
+  db.Todo.findOneAndRemove({_id: req.params.id}, function(err, books) {
+    if (err) {
+      console.log("index error: " + err);
+      res.sendStatus(500);
+    }
+    // get the id of the book to delete
+    let toDoToDelete = req.params.id;
+    res.json(toDoToDelete);
+  });
 });
-
-
 
 //port listening
 app.listen(port, ()=> {
