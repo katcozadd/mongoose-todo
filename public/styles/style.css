@@ -6,35 +6,21 @@ body {
 	background: #89949E;
 }
 
-.intro {
-	height: 703px;
-	width: 100%;
-	margin: auto;
-	background: url(images/kiki.jpg) center center no-repeat;
-	display: table;
-	top: 0;
-	background-size: cover;
+div.container {
+    text-align: center;
 }
 
-.intro .inner {
-	display: table-cell;
-	vertical-align: middle;	
-	width: 100%;
-	max-width: none;
+
+h1.text-center {
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    width: 50%;
+    margin: 20px auto;
+    padding: 40px;
+    font-size: 3em;
 }
 
-.content{
-	max-width: 500px;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.content h1 {
-	font-family: 'Lato', sans-serif;
-	text-transform: uppercase;
-	color: white;
-	font-size: 450%
-}
 
 h1 {
 	border: 2px solid white;
@@ -43,10 +29,10 @@ h1 {
 }
 
 li {
-    height: 20px;
+    height: 70px;
     width: 50%;
     list-style-type: none;
-    background-color: white;
+    background: white;
     padding: 20px 10px;
     border: 2px solid #837E5C;
     margin: 5px auto;
@@ -60,6 +46,12 @@ ul {
 	padding: 0;
 }
 
+div.form-group {
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    color: white;
+}
 
 h4, p {
     font-family: 'Lato', sans-serif;
@@ -76,8 +68,8 @@ h4, p {
 
 
 h4 {
-	font-size: 35px;
-	line-height: 30px;
+    font-size: 1em;
+    line-height: 22px;
 }
 
 

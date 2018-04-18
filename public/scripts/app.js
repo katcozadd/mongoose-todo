@@ -1,16 +1,16 @@
 console.log("Sanity Check: JS is working!");
 var $toDoList;
-var allToDos = [];
+var allToDos = []; //empty array
 
 $(document).ready(function(){
 
   $toDoList = $('#toDoTarget');
  
   $.ajax({
-    method: 'GET',
-    url: '/todo',
-    success: handleSuccess,
-    error: handleError
+    method: 'GET', //getting all of the data from database
+    url: '/todo', //on this url
+    success: handleSuccess, //calls handleSuccess on success
+    error: handleError //throws error on error
   });
 
 
@@ -18,9 +18,9 @@ $(document).ready(function(){
   $(".create").on('click', function(e) {
     e.preventDefault();
     $.ajax({
-      method: 'POST',
-      url: '/todo',
-      data: $('#newToDoForm').serialize(),
+      method: 'POST', //post method
+      url: '/todo', //url to post on
+      data: $('#newToDoForm').serialize(), //serializing the form object
       success: newToDoSuccess,
       error: newToDoError
     });
@@ -31,48 +31,39 @@ $(document).ready(function(){
 
 
 function getToDoHtml(toDoList) {
-	console.log('test')
-  return `<hr>
-          <p>
-            <b>${toDoList.task}</b>
-            by ${toDoList.description}
+  return `<li>
+            To Do: <b>${toDoList.task}</b>
+            <br />
+            How: ${toDoList.description}
+            <br />
             <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${toDoList._id}>Delete</button>
-          </p>`;
+          </li>`;
 }
 
 function getAllToDoHtml(toDo) {
   return toDo.map(getToDoHtml).join("");
 }
 
-// helper function to render all posts to view
-// note: we empty and re-render the collection each time our post data changes
+//function to render all posts to view
 function render () {
-  // empty existing posts from view
-  $toDoList.empty();
-
-  // pass `allToDos` into the template function
-  var toDoHtml = getAllToDoHtml(allToDos);
-
-  // append html to the view
-  $toDoList.append(toDoHtml);
+  $toDoList.empty();// empty existing posts from view
+  var toDoHtml = getAllToDoHtml(allToDos); // pass `allToDos` into the template function
+  $toDoList.append(toDoHtml);// append html to the view
 };
 
 function handleSuccess(json) {
-	console.log(json);
-  allToDos = json;
+  allToDos = json;//assigning the value of the json object into the empty array
   render();
-  // getAllToDos();
 }
 
 function handleError(e) {
   console.log('uh oh');
-  $('#toDoTarget').text('Failed to load to dos, is the server working?');
+  $('#toDoTarget').text('Failed to load to-dos');
 }
 
 function newToDoSuccess(json) {
-  $('#newToDoForm input').val('');
-  console.log(allToDos);
-  allToDos.push(json);
+  $('#newToDoForm input').val(''); //clearing the input fields after successful post
+  allToDos.push(json); //pushing all data from the array into json
   render();
 }
 

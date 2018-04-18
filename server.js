@@ -28,13 +28,12 @@ var port = 3000;
 
 
 
-// define a root route: localhost:3000/
+// define a root route on localhost:3000/
 app.get('/', function (req, res) {
-  res.render('index');
+  res.render('index'); //displaying my index.ejs
 });
 
-
-//To Do Page with all of the to dos - index.ejs
+//this route works with my ajax get to display the seeded data on dom
 app.get('/todo', function (req, res, next) {
     console.log('hello') // shows in terminal
     db.Todo.find(function(err, todo) {
@@ -42,22 +41,23 @@ app.get('/todo', function (req, res, next) {
     	console.log("index error: " + err);
       	res.sendStatus(500);
     	}
-    	console.log(todo);
     res.json(todo);
     });
 });
 
-//Individual pages with specific todo in different pages by id - pizza-single.ejs
-app.get("/todo/:id", function(req, res) {
-    db.Todo.find(function(err, todo) {
-    	if (err) {
-    	console.log("index error: " + err);
-      	res.sendStatus(500);
-    	}
-	let id = request.params.id;
-	res.render( 'single/todo-singles', todo[id-1]);
-});
-});
+
+// this whole thing is not needed at the mo
+// //Individual pages with specific todo in different pages by id - pizza-single.ejs
+// app.get("/todo/:id", function(req, res) {
+//     db.Todo.find(function(err, todo) {
+//     	if (err) {
+//     	console.log("index error: " + err);
+//       	res.sendStatus(500);
+//     	}
+// 	let id = request.params.id;
+// 	res.render( 'single/todo-singles', todo[id-1]);
+// });
+// });
 
 
 // create new todo
