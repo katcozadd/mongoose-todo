@@ -37,6 +37,16 @@ $(document).ready(function(){
     });
   });
 
+  $toDoList.on('click', '.updateBtn', function() {
+    console.log('clicked update button to,  /todo/'+$(this).attr('data-id'));
+    $.ajax({
+      method: 'PUT',
+      url: '/todo/'+$(this).attr('data-id'),
+      data: $('#newToDoForm').serialize(),
+      success: updateToDoSuccess,
+      error: updateToDoError
+    });
+  });
 
 
 
@@ -75,6 +85,7 @@ function handleError(e) {
 
 function newToDoSuccess(json) {
   $('#newToDoForm input').val(''); //clearing the input fields after successful post
+  console.log(json);
   allToDos.push(json); //pushing all data from the array into json
   render();
 }
@@ -97,6 +108,24 @@ function deleteToDoSuccess(json) {
 }
 
 function deleteToDoError() {
+  console.log('delete to do error!');
+}
+
+
+function updateToDoSuccess(json) {
+  var itemId = json._id;
+  for(var i = 0; i < allToDos.length; i++) {
+    if(allToDos[i]._id === itemId) {
+      allToDos[i].task = json.task;
+      allToDos[i].description = json.description;
+      console.log(json);
+      // break;
+  }
+   render();
+}
+};
+
+function updateToDoError() {
   console.log('delete to do error!');
 }
 

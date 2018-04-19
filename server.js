@@ -45,21 +45,6 @@ app.get('/todo', function (req, res, next) {
     });
 });
 
-
-// this whole thing is not needed at the mo
-// //Individual pages with specific todo in different pages by id - pizza-single.ejs
-// app.get("/todo/:id", function(req, res) {
-//     db.Todo.find(function(err, todo) {
-//     	if (err) {
-//     	console.log("index error: " + err);
-//       	res.sendStatus(500);
-//     	}
-// 	let id = request.params.id;
-// 	res.render( 'single/todo-singles', todo[id-1]);
-// });
-// });
-
-
 // create new todo
 app.post('/todo', function(req, res) {
   // create new todo with form data (`req.body`)
@@ -87,6 +72,28 @@ app.delete('/todo/:id', function (req, res) {
     let toDoToDelete = req.params.id;
     res.json(toDoToDelete);
   });
+});
+
+// update todo list item
+app.put('/todo/:id', function(req,res){
+  console.log(req.params.id);
+  let task = req.body.task;
+  console.log(task);
+  let description = req.body.description;
+  console.log(description);
+
+  db.Todo.findOneAndUpdate(
+    {_id: req.params.id}, {$set:{task: task, description: description}}, {new: true}, function (err, update) {
+        if (err) {
+      console.log("index error: " + err);
+      res.sendStatus(500);
+      } else {
+        //doc is the json object that is being sent (refer to 'json' callback in JS functions)
+        console.log(update);
+        res.json(update);
+    }
+  });
+
 });
 
 //port listening
