@@ -76,9 +76,9 @@ app.post('/todo', function(req, res) {
 });
 
 // delete to do
-app.delete('/todo', function (req, res) {
+app.delete('/todo/:id', function (req, res) {
   // get to do id from url params (`req.params`)
-  db.Todo.findOneAndRemove({_id: req.params.id}, function(err, books) {
+  db.Todo.findOneAndRemove({_id: req.params.id}, function(err, todos) {
     if (err) {
       console.log("index error: " + err);
       res.sendStatus(500);

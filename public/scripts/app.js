@@ -28,9 +28,10 @@ $(document).ready(function(){
 
 
   $toDoList.on('click', '.deleteBtn', function() {
+    console.log('clicked delete button to, /todo/' + $(this).attr('data-id'))
     $.ajax({
       method: 'DELETE',
-      url: '/todo'+$(this).attr('data-id'),
+      url: '/todo/'+$(this).attr('data-id'),
       success: deleteToDoSuccess,
       error: deleteToDoError
     });
@@ -45,7 +46,9 @@ function getToDoHtml(toDoList) {
             <br />
             How: ${toDoList.description}
             <br />
-            <button type="button" name="button" class="deleteBtn btn" data-id=${toDoList._id}>Delete</button>
+            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${toDoList._id}>Delete</button>
+            <button type="button" name="button" class="updateBtn btn btn-warning pull-left" data-id=${toDoList._id}>Update</button>
+
           </li>`;
 }
 
@@ -94,7 +97,7 @@ function deleteToDoSuccess(json) {
 }
 
 function deleteToDoError() {
-  console.log('deletebook error!');
+  console.log('delete to do error!');
 }
 
 });
